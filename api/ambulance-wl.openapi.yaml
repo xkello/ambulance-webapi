@@ -7,7 +7,7 @@ info:
   version: "1.0.0"
   title: Waiting List Api
   contact:
-    email: xkello@stuba.sk
+    email: your_email@stuba.sk
   license:
     name: CC BY 4.0
     url: "https://creativecommons.org/licenses/by/4.0/"
@@ -20,33 +20,6 @@ tags:
     description: Ambulance details
 paths:
   "/waiting-list/{ambulanceId}/entries":
-    get:
-      tags:
-        - ambulanceWaitingList
-      summary: Provides the ambulance waiting list
-      operationId: getWaitingListEntries
-      description: By using ambulanceId you get list of entries in ambulance waiting list
-      parameters:
-        - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: value of the waiting list entries
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/WaitingListEntry"
-              examples:
-                response:
-                  $ref: "#/components/examples/WaitingListEntriesExample"
-        "404":
-          description: Ambulance with such ID does not exist
     post:
       tags:
         - ambulanceWaitingList
@@ -88,6 +61,33 @@ paths:
           description: Ambulance with such ID does not exists
         "409":
           description: Entry with the specified id already exists
+    get:
+      tags:
+        - ambulanceWaitingList
+      summary: Provides the ambulance waiting list
+      operationId: getWaitingListEntries
+      description: By using ambulanceId you get list of entries in ambulance waiting list
+      parameters:
+        - in: path
+          name: ambulanceId
+          description: pass the id of the particular ambulance
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: value of the waiting list entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WaitingListEntry"
+              examples:
+                response:
+                  $ref: "#/components/examples/WaitingListEntriesExample"
+        "404":
+          description: Ambulance with such ID does not exist
   "/waiting-list/{ambulanceId}/entries/{entryId}":
     get:
       tags:
@@ -335,7 +335,7 @@ components:
         $ref: "#/components/examples/ConditionExample"
     Ambulance:
       type: object
-      required: [ "id", "name", "roomNumber" ]
+      required: ["id", "name", "roomNumber"]
       properties:
         id:
           type: string
@@ -351,11 +351,11 @@ components:
         waitingList:
           type: array
           items:
-            $ref: '#/components/schemas/WaitingListEntry'
+            $ref: "#/components/schemas/WaitingListEntry"
         predefinedConditions:
           type: array
           items:
-            $ref: '#/components/schemas/Condition'
+            $ref: "#/components/schemas/Condition"
       example:
         $ref: "#/components/examples/AmbulanceExample"
   examples:
