@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/wac-fiit/cv3-ambulance-webapi/internal/db_service"
+	"github.com/wac-fiit/xkello-ambulance-webapi/internal/db_service"
 )
 
 type implAmbulancesAPI struct {
