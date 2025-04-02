@@ -16,7 +16,10 @@ export AMBULANCE_API_MONGODB_PASSWORD="root"
 # Define a helper function for docker compose using our compose file
 mongo() {
     echo "mongo command $@"
-    docker compose --file "${PROJECT_ROOT}/deployments/docker-compose/compose.yaml" "$@"
+    (
+      cd "${PROJECT_ROOT}/deployments/docker-compose" || exit 1
+      docker compose --file compose.yaml "$@"
+    )
     echo "mongo running with command: $@"
 }
 
