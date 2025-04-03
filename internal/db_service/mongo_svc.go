@@ -57,13 +57,12 @@ func NewMongoService[DocType interface{}](config MongoServiceConfig) DbService[D
     }
 
     if svc.ServerPort == 0 {
-        rawPort := enviro("AMBULANCE_API_MONGODB_PORT", "27017")
-        parsedPort, err := strconv.Atoi(rawPort)
-        if err != nil {
-            log.Printf("Invalid port value: %s", rawPort)
-            svc.ServerPort = 27017
+        port := enviro("AMBULANCE_API_MONGODB_PORT", "27017")
+        if port, err := strconv.Atoi(port); err == nil {
+            svc.ServerPort = port
         } else {
-            svc.ServerPort = parsedPort
+            log.Printf("Invalid port value: %v", port)
+            svc.ServerPort = 27017
         }
     }
 
