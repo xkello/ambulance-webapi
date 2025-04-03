@@ -43,7 +43,7 @@ case "$command" in
     docker run --rm -ti -v "${PROJECT_ROOT}":/local openapitools/openapi-generator-cli generate -c /local/scripts/generator-cfg.yaml
     ;;
   docker)
-    docker build -t sempresionus/ambulance-wl-webapi:local-build -f ${PROJECT_ROOT}/build/docker/Dockerfile .
+    docker build -t xkello/ambulance-wl-webapi:local-build -f ${PROJECT_ROOT}/build/docker/Dockerfile .
     ;;
   test)
     go test -v ./...
